@@ -1,7 +1,7 @@
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 
 export function AnimatedFeatureCardsView() {
   const card1 = useRef(null);
