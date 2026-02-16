@@ -28,3 +28,14 @@ Focus `SplitText`, `DrawSVG`, `MorphSVG` and `Draggable`
 - **SVG Path Drawing:** Take a handwritten signature or a line-art illustration and use DrawSVG to make it look like it's being "drawn" onto the screen in real-time.
 - **Interactive Draggable Dashboard:** Create a set of "widgets" or windows that the user can click and drag around the screen. Add Inertia so they have a bit of weight and "slide" to a stop when thrown.
 - **Morphing Icon Toggle:** Create a "Play" button icon that smoothly morphs its shape into a "Pause" or "Stop" square using MorphSVG.
+
+## Level 5 Canvas & GSAP
+Focus combining GSAP with the HTML5 Canvas API for high-performance animations
+
+- **Particle System:** Create a canvas particle system (confetti, fireflies, or bubbles) where GSAP controls each particle's movement, opacity, and scale properties
+- **Animated Data Visualization:** Build an animated bar chart or line graph using Canvas API, with GSAP tweening the data values and drawing animations
+- **Canvas Sprite Animation:** Load a sprite sheet onto canvas and use GSAP to control frame-by-frame animation timing (great for game characters)
+- **Interactive Drawing Playback:** Users draw on canvas, then GSAP animates the strokes with replay, morph, or dissolve effects
+- **Physics-Based Animation:** Canvas-drawn objects with GSAP-controlled physics (bounce, gravity, collision detection)
+- **Generative Art Animation:** Procedurally generate shapes on canvas and animate them into patterns or mandalas using GSAP
+- **Canvas Text Scramble:** Render text on canvas and use GSAP to animate a "decode" or "scramble" effect character by character

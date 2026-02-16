@@ -29,3 +29,13 @@ export {
   DraggableDashboardView,
   MorphingIconView,
 } from "./level4";
+
+export {
+  ParticleSystemView,
+  DataVisualizationView,
+  SpriteAnimationView,
+  DrawingPlaybackView,
+  PhysicsAnimationView,
+  GenerativeArtView,
+  CanvasTextScrambleView,
+} from "./level5";

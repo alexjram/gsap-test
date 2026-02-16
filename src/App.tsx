@@ -15,6 +15,13 @@ import {
   SvgPathDrawingView,
   DraggableDashboardView,
   MorphingIconView,
+  ParticleSystemView,
+  DataVisualizationView,
+  SpriteAnimationView,
+  DrawingPlaybackView,
+  PhysicsAnimationView,
+  GenerativeArtView,
+  CanvasTextScrambleView,
 } from "@/views";
 
 function App() {
@@ -46,6 +53,15 @@ function App() {
           <Route path="/level4/svg-drawing" element={<SvgPathDrawingView />} />
           <Route path="/level4/draggable" element={<DraggableDashboardView />} />
           <Route path="/level4/morph-icon" element={<MorphingIconView />} />
+
+          {/* Level 5 - Canvas & GSAP */}
+          <Route path="/level5/particles" element={<ParticleSystemView />} />
+          <Route path="/level5/data-viz" element={<DataVisualizationView />} />
+          <Route path="/level5/sprite" element={<SpriteAnimationView />} />
+          <Route path="/level5/drawing" element={<DrawingPlaybackView />} />
+          <Route path="/level5/physics" element={<PhysicsAnimationView />} />
+          <Route path="/level5/generative" element={<GenerativeArtView />} />
+          <Route path="/level5/text-scramble" element={<CanvasTextScrambleView />} />
         </Routes>
       </SidebarInset>
     </SidebarProvider>

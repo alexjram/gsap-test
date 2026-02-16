@@ -47,7 +47,7 @@ export function AnimatedExplainerView() {
         as the "story" progresses.
       </p>
       <div className="mt-8 rounded-lg border-2 border-dashed border-muted p-12">
-        <div>
+        <div className="lg:w-1/2">
           <svg
             viewBox="0 0 400 300"
             xmlns="http://www.w3.org/2000/svg"

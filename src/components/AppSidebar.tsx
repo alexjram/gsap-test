@@ -27,6 +27,13 @@ import {
   Pencil,
   GripHorizontal,
   Shapes,
+  Sparkles,
+  BarChart3,
+  Film,
+  Paintbrush,
+  Apple,
+  Palette,
+  Text,
 } from "lucide-react";
 
 const level1Items = [
@@ -103,6 +110,44 @@ const level4Items = [
     title: "Morph Icon",
     icon: Shapes,
     href: "/level4/morph-icon",
+  },
+];
+
+const level5Items = [
+  {
+    title: "Particles",
+    icon: Sparkles,
+    href: "/level5/particles",
+  },
+  {
+    title: "Data Viz",
+    icon: BarChart3,
+    href: "/level5/data-viz",
+  },
+  {
+    title: "Sprite",
+    icon: Film,
+    href: "/level5/sprite",
+  },
+  {
+    title: "Drawing",
+    icon: Paintbrush,
+    href: "/level5/drawing",
+  },
+  {
+    title: "Physics",
+    icon: Apple,
+    href: "/level5/physics",
+  },
+  {
+    title: "Generative",
+    icon: Palette,
+    href: "/level5/generative",
+  },
+  {
+    title: "Text Scramble",
+    icon: Text,
+    href: "/level5/text-scramble",
   },
 ];
 
@@ -193,6 +238,28 @@ export function AppSidebar() {
           <SidebarGroupLabel>Level 4 - Advanced</SidebarGroupLabel>
           <SidebarMenu>
             {level4Items.map((item) => (
+              <SidebarMenuItem key={item.href}>
+                <SidebarMenuButton
+                  asChild
+                  isActive={location.pathname === item.href}
+                  tooltip={item.title}
+                >
+                  <Link to={item.href}>
+                    <item.icon />
+                    <span>{item.title}</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            ))}
+          </SidebarMenu>
+        </SidebarGroup>
+
+        <SidebarSeparator />
+
+        <SidebarGroup>
+          <SidebarGroupLabel>Level 5 - Canvas</SidebarGroupLabel>
+          <SidebarMenu>
+            {level5Items.map((item) => (
               <SidebarMenuItem key={item.href}>
                 <SidebarMenuButton
                   asChild
