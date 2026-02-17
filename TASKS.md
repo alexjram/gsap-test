@@ -29,7 +29,18 @@ Focus `SplitText`, `DrawSVG`, `MorphSVG` and `Draggable`
 - **Interactive Draggable Dashboard:** Create a set of "widgets" or windows that the user can click and drag around the screen. Add Inertia so they have a bit of weight and "slide" to a stop when thrown.
 - **Morphing Icon Toggle:** Create a "Play" button icon that smoothly morphs its shape into a "Pause" or "Stop" square using MorphSVG.
 
-## Level 5 Canvas & GSAP
+## Level 5 Canvas Fundamentals
+Focus HTML5 Canvas basics: setup, drawing shapes, colors, and the animation loop (no GSAP yet)
+
+- **Hello Canvas:** Create a canvas element, get the 2D context, and draw a colored rectangle in the center. Learn the coordinate system (0,0 is top-left)
+- **Drawing Shapes:** Draw multiple shapes: circles (arc), rectangles (fillRect), lines (lineTo), and triangles (path with moveTo/lineTo). Use different fill colors and stroke colors
+- **Canvas Clear & Redraw:** Draw a shape, then clear the canvas (clearRect), then draw it in a new position. Understand that canvas is "immediate mode" - it doesn't remember what you drew
+- **Simple Animation Loop:** Use requestAnimationFrame to animate a circle moving across the screen. Learn the pattern: clear, update position, draw, request next frame
+- **Multiple Objects:** Create an array of objects (each with x, y, radius, color) and loop through them to draw multiple moving circles
+- **Mouse Interaction:** Track mouse position on the canvas and have a shape follow the cursor (or change color on hover)
+- **Bouncing Ball:** Make a ball bounce off the canvas edges by detecting collision with canvas width/height and reversing direction
+
+## Level 6 Canvas & GSAP
 Focus combining GSAP with the HTML5 Canvas API for high-performance animations
 
 - **Particle System:** Create a canvas particle system (confetti, fireflies, or bubbles) where GSAP controls each particle's movement, opacity, and scale properties

@@ -15,6 +15,13 @@ import {
   SvgPathDrawingView,
   DraggableDashboardView,
   MorphingIconView,
+  HelloCanvasView,
+  DrawingShapesView,
+  CanvasClearRedrawView,
+  AnimationLoopView,
+  MultipleObjectsView,
+  MouseInteractionView,
+  BouncingBallView,
   ParticleSystemView,
   DataVisualizationView,
   SpriteAnimationView,
@@ -54,14 +61,23 @@ function App() {
           <Route path="/level4/draggable" element={<DraggableDashboardView />} />
           <Route path="/level4/morph-icon" element={<MorphingIconView />} />
 
-          {/* Level 5 - Canvas & GSAP */}
-          <Route path="/level5/particles" element={<ParticleSystemView />} />
-          <Route path="/level5/data-viz" element={<DataVisualizationView />} />
-          <Route path="/level5/sprite" element={<SpriteAnimationView />} />
-          <Route path="/level5/drawing" element={<DrawingPlaybackView />} />
-          <Route path="/level5/physics" element={<PhysicsAnimationView />} />
-          <Route path="/level5/generative" element={<GenerativeArtView />} />
-          <Route path="/level5/text-scramble" element={<CanvasTextScrambleView />} />
+          {/* Level 5 - Canvas Fundamentals */}
+          <Route path="/level5/hello-canvas" element={<HelloCanvasView />} />
+          <Route path="/level5/drawing-shapes" element={<DrawingShapesView />} />
+          <Route path="/level5/clear-redraw" element={<CanvasClearRedrawView />} />
+          <Route path="/level5/animation-loop" element={<AnimationLoopView />} />
+          <Route path="/level5/multiple-objects" element={<MultipleObjectsView />} />
+          <Route path="/level5/mouse-interaction" element={<MouseInteractionView />} />
+          <Route path="/level5/bouncing-ball" element={<BouncingBallView />} />
+
+          {/* Level 6 - Canvas & GSAP */}
+          <Route path="/level6/particles" element={<ParticleSystemView />} />
+          <Route path="/level6/data-viz" element={<DataVisualizationView />} />
+          <Route path="/level6/sprite" element={<SpriteAnimationView />} />
+          <Route path="/level6/drawing" element={<DrawingPlaybackView />} />
+          <Route path="/level6/physics" element={<PhysicsAnimationView />} />
+          <Route path="/level6/generative" element={<GenerativeArtView />} />
+          <Route path="/level6/text-scramble" element={<CanvasTextScrambleView />} />
         </Routes>
       </SidebarInset>
     </SidebarProvider>

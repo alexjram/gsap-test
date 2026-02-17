@@ -31,6 +31,16 @@ export {
 } from "./level4";
 
 export {
+  HelloCanvasView,
+  DrawingShapesView,
+  CanvasClearRedrawView,
+  AnimationLoopView,
+  MultipleObjectsView,
+  MouseInteractionView,
+  BouncingBallView,
+} from "./level5";
+
+export {
   ParticleSystemView,
   DataVisualizationView,
   SpriteAnimationView,
@@ -38,4 +48,4 @@ export {
   PhysicsAnimationView,
   GenerativeArtView,
   CanvasTextScrambleView,
-} from "./level5";
+} from "./level6";

@@ -34,6 +34,13 @@ import {
   Apple,
   Palette,
   Text,
+  Square,
+  Circle,
+  RefreshCw,
+  Play,
+  Copy,
+  MousePointer2,
+  Minus,
 } from "lucide-react";
 
 const level1Items = [
@@ -115,39 +122,77 @@ const level4Items = [
 
 const level5Items = [
   {
+    title: "Hello Canvas",
+    icon: Square,
+    href: "/level5/hello-canvas",
+  },
+  {
+    title: "Drawing Shapes",
+    icon: Circle,
+    href: "/level5/drawing-shapes",
+  },
+  {
+    title: "Clear & Redraw",
+    icon: RefreshCw,
+    href: "/level5/clear-redraw",
+  },
+  {
+    title: "Animation Loop",
+    icon: Play,
+    href: "/level5/animation-loop",
+  },
+  {
+    title: "Multiple Objects",
+    icon: Copy,
+    href: "/level5/multiple-objects",
+  },
+  {
+    title: "Mouse Interaction",
+    icon: MousePointer2,
+    href: "/level5/mouse-interaction",
+  },
+  {
+    title: "Bouncing Ball",
+    icon: Minus,
+    href: "/level5/bouncing-ball",
+  },
+];
+
+const level6Items = [
+  {
     title: "Particles",
     icon: Sparkles,
-    href: "/level5/particles",
+    href: "/level6/particles",
   },
   {
     title: "Data Viz",
     icon: BarChart3,
-    href: "/level5/data-viz",
+    href: "/level6/data-viz",
   },
   {
     title: "Sprite",
     icon: Film,
-    href: "/level5/sprite",
+    href: "/level6/sprite",
   },
   {
     title: "Drawing",
     icon: Paintbrush,
-    href: "/level5/drawing",
+    href: "/level6/drawing",
   },
   {
     title: "Physics",
     icon: Apple,
-    href: "/level5/physics",
+    href: "/level6/physics",
   },
   {
     title: "Generative",
     icon: Palette,
-    href: "/level5/generative",
+    href: "/level6/generative",
   },
   {
     title: "Text Scramble",
     icon: Text,
-    href: "/level5/text-scramble",
+    href: "/level6/text-scramble",
   },
 ];
 
@@ -257,9 +302,31 @@ export function AppSidebar() {
         <SidebarSeparator />
 
         <SidebarGroup>
-          <SidebarGroupLabel>Level 5 - Canvas</SidebarGroupLabel>
+          <SidebarGroupLabel>Level 5 - Canvas Basics</SidebarGroupLabel>
           <SidebarMenu>
             {level5Items.map((item) => (
+              <SidebarMenuItem key={item.href}>
+                <SidebarMenuButton
+                  asChild
+                  isActive={location.pathname === item.href}
+                  tooltip={item.title}
+                >
+                  <Link to={item.href}>
+                    <item.icon />
+                    <span>{item.title}</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            ))}
+          </SidebarMenu>
+        </SidebarGroup>
+
+        <SidebarSeparator />
+
+        <SidebarGroup>
+          <SidebarGroupLabel>Level 6 - Canvas & GSAP</SidebarGroupLabel>
+          <SidebarMenu>
+            {level6Items.map((item) => (
               <SidebarMenuItem key={item.href}>
                 <SidebarMenuButton
                   asChild
