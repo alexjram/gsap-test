@@ -55,43 +55,6 @@ export function CharacterWalkCycleView() {
         timeline to coordinate the legs and arms so they move in sync.
       </p>
       <div className="mt-8 rounded-lg border-2 border-dashed border-muted p-12">
-        {/*<div>
-          <svg id="walker" viewBox="0 0 200 300" width="200" height="300">
-            <circle cx="100" cy="50" r="30" fill="#f4c095" />
-
-            <rect x="85" y="80" width="30" height="80" rx="10" fill="#3a86ff" />
-
-            <g id="leftArm" transform-origin="100px 90px">
-              <rect
-                x="70"
-                y="85"
-                width="15"
-                height="80"
-                rx="8"
-                fill="#3a86ff"
-              />
-            </g>
-
-            <g id="rightArm" transform-origin="100px 90px">
-              <rect
-                x="115"
-                y="85"
-                width="15"
-                height="80"
-                rx="8"
-                fill="#3a86ff"
-              />
-            </g>
-
-            <g id="leftLeg" transform-origin="100px 160px">
-              <rect x="85" y="160" width="15" height="90" rx="8" fill="#222" />
-            </g>
-
-            <g id="rightLeg" transform-origin="100px 160px">
-              <rect x="100" y="160" width="15" height="90" rx="8" fill="#222" />
-            </g>
-          </svg>
-        </div>*/}
         <div>
           <svg
             viewBox="0 0 200 300"
@@ -110,8 +73,8 @@ export function CharacterWalkCycleView() {
               x2="180"
               y2="260"
               stroke="#ccc"
-              stroke-width="2"
-              stroke-linecap="round"
+              strokeWidth="2"
+              strokeLinecap="round"
               strokeDasharray="5px 3px"
               id="floor"
             />

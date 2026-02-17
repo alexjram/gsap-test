@@ -6,8 +6,19 @@ import App from "./App.tsx";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SplitText } from "gsap/SplitText";
+import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
+import Draggable from "gsap/dist/Draggable";
+import InertiaPlugin from "gsap/dist/InertiaPlugin";
 
-gsap.registerPlugin(useGSAP, ScrollTrigger);
+gsap.registerPlugin(
+  useGSAP,
+  ScrollTrigger,
+  SplitText,
+  DrawSVGPlugin,
+  Draggable,
+  InertiaPlugin,
+);
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

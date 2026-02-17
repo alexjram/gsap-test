@@ -60,7 +60,7 @@ export function AnimatedExplainerView() {
           >
             <g id="sun-group" transform="translate(50, 50)">
               <circle id="sun-core" cx="0" cy="0" r="25" fill="#FDB813" />
-              <g id="sun-rays" stroke="#FDB813" stroke-width="2">
+              <g id="sun-rays" stroke="#FDB813" strokeWidth="2">
                 <line x1="0" y1="-35" x2="0" y2="-45" />
                 <line x1="25" y1="-25" x2="32" y2="-32" />
                 <line x1="35" y1="0" x2="45" y2="0" />
@@ -90,7 +90,7 @@ export function AnimatedExplainerView() {
                 rx="5"
                 fill="#2c3e50"
                 stroke="#34495e"
-                stroke-width="2"
+                strokeWidth="2"
               />
               <path
                 id="panel-glint"
@@ -127,7 +127,7 @@ export function AnimatedExplainerView() {
                 rx="4"
                 fill="#ecf0f1"
                 stroke="#bdc3c7"
-                stroke-width="2"
+                strokeWidth="2"
               />
               <rect x="10" y="0" width="20" height="10" fill="#bdc3c7" />
               <rect
@@ -144,8 +144,8 @@ export function AnimatedExplainerView() {
                 id="battery-text"
                 x="50"
                 y="45"
-                font-family="sans-serif"
-                font-size="12"
+                fontFamily="sans-serif"
+                fontSize="12"
                 fill="#7f8c8d"
                 opacity="0"
               >
