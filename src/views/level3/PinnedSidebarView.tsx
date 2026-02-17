@@ -2,7 +2,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { images } from "@/contants/images";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
-import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export function PinnedSidebarView() {
