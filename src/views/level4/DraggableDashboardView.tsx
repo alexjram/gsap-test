@@ -5,6 +5,7 @@ export function DraggableDashboardView() {
   useGSAP(() => {
     Draggable.create(".movable", {
       bounds: ".container",
+      inertia: true,
     });
   });
   return (

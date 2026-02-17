@@ -10,6 +10,7 @@ import { SplitText } from "gsap/SplitText";
 import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
 import Draggable from "gsap/dist/Draggable";
 import InertiaPlugin from "gsap/dist/InertiaPlugin";
+import MorphSVGPlugin from "gsap/MorphSVGPlugin";
 
 gsap.registerPlugin(
   useGSAP,
@@ -18,6 +19,7 @@ gsap.registerPlugin(
   DrawSVGPlugin,
   Draggable,
   InertiaPlugin,
+  MorphSVGPlugin,
 );
 
 createRoot(document.getElementById("root")!).render(
