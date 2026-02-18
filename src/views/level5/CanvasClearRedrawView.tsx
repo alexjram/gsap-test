@@ -47,7 +47,7 @@ export function CanvasClearRedrawView() {
       window.removeEventListener("resize", resizeListener);
       clearInterval(id);
     };
-  });
+  }, [canvasRef]);
   return (
     <div className="flex flex-col gap-4 p-4 h-screen">
       <h1 className="text-3xl font-bold">Level 5: Canvas Clear & Redraw</h1>
