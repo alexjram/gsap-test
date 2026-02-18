@@ -11,7 +11,6 @@ import {
   useSidebar,
   SidebarGroup,
   SidebarGroupLabel,
-  SidebarSeparator,
 } from "@/components/ui/sidebar";
 import {
   Grid3X3,
@@ -233,8 +232,6 @@ export function AppSidebar() {
           </SidebarMenu>
         </SidebarGroup>
 
-        <SidebarSeparator />
-
         <SidebarGroup>
           <SidebarGroupLabel>Level 2 - Timeline</SidebarGroupLabel>
           <SidebarMenu>
@@ -254,8 +251,6 @@ export function AppSidebar() {
             ))}
           </SidebarMenu>
         </SidebarGroup>
-
-        <SidebarSeparator />
 
         <SidebarGroup>
           <SidebarGroupLabel>Level 3 - Scroll</SidebarGroupLabel>
@@ -277,8 +272,6 @@ export function AppSidebar() {
           </SidebarMenu>
         </SidebarGroup>
 
-        <SidebarSeparator />
-
         <SidebarGroup>
           <SidebarGroupLabel>Level 4 - Advanced</SidebarGroupLabel>
           <SidebarMenu>
@@ -299,8 +292,6 @@ export function AppSidebar() {
           </SidebarMenu>
         </SidebarGroup>
 
-        <SidebarSeparator />
-
         <SidebarGroup>
           <SidebarGroupLabel>Level 5 - Canvas Basics</SidebarGroupLabel>
           <SidebarMenu>
@@ -320,8 +311,6 @@ export function AppSidebar() {
             ))}
           </SidebarMenu>
         </SidebarGroup>
-
-        <SidebarSeparator />
 
         <SidebarGroup>
           <SidebarGroupLabel>Level 6 - Canvas & GSAP</SidebarGroupLabel>
