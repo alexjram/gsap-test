@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { bubbleLoop } from "@/models/Bubble";
 import { useRef, useEffect, useState } from "react";
 
 /*
@@ -98,6 +99,68 @@ import { useRef, useEffect, useState } from "react";
  *    - Use ctx.arc() for circles, ctx.fillRect() for confetti
  *
  * 5. Cleanup removed particles to prevent memory leaks
+ *
+ * ============================================
+ * BASIC EXAMPLE (Simple rising particle)
+ * ============================================
+ *
+ * // Step 1: Define your particle type
+ * interface Particle {
+ *   x: number;
+ *   y: number;
+ *   size: number;
+ *   opacity: number;
+ *   color: string;
+ * }
+ *
+ * // Step 2: Create particles array
+ * const particles: Particle[] = [];
+ *
+ * // Step 3: Function to spawn a particle
+ * function spawnParticle(canvas: HTMLCanvasElement) {
+ *   const particle: Particle = {
+ *     x: Math.random() * canvas.width,
+ *     y: canvas.height + 20,
+ *     size: 10 + Math.random() * 20,
+ *     opacity: 0.5 + Math.random() * 0.5,
+ *     color: `rgba(100, 200, 255, ${0.3 + Math.random() * 0.4})`,
+ *   };
+ *   particles.push(particle);
+ *
+ *   // Animate with GSAP
+ *   gsap.to(particle, {
+ *     y: -50,
+ *     duration: 3 + Math.random() * 2,
+ *     ease: "none",
+ *     onComplete: () => {
+ *       // Remove particle when done
+ *       const index = particles.indexOf(particle);
+ *       if (index > -1) particles.splice(index, 1);
+ *     },
+ *   });
+ * }
+ *
+ * // Step 4: Render loop using gsap.ticker
+ * gsap.ticker.add(() => {
+ *   ctx.clearRect(0, 0, canvas.width, canvas.height);
+ *
+ *   particles.forEach(p => {
+ *     ctx.beginPath();
+ *     ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+ *     ctx.fillStyle = p.color;
+ *     ctx.fill();
+ *   });
+ * });
+ *
+ * // Step 5: Spawn particles on interval
+ * const interval = setInterval(() => spawnParticle(canvas), 300);
+ *
+ * // Cleanup on unmount
+ * return () => {
+ *   clearInterval(interval);
+ *   gsap.ticker.remove(renderCallback);
+ *   gsap.killTweensOf(particles);
+ * };
  */
 
 export function ParticleSystemView() {
@@ -110,14 +173,24 @@ export function ParticleSystemView() {
     const canvas = canvasRef.current;
     const ctx = canvas?.getContext("2d");
     if (!canvas || !ctx) return;
+    let removeLoop = () => {};
     const resizeListener = () => {
       canvas.width = canvas.clientWidth;
       canvas.height = canvas.clientHeight;
     };
     window.addEventListener("resize", resizeListener);
+    switch (type) {
+      case "bubbles":
+        removeLoop = bubbleLoop(canvas, ctx);
+        break;
+      case "fireflies":
+      case "confetti":
+    }
+    resizeListener();
 
     return () => {
       window.removeEventListener("resize", resizeListener);
+      removeLoop();
     };
   }, [type]);
   return (
