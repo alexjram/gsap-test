@@ -11,7 +11,7 @@ import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
 import Draggable from "gsap/dist/Draggable";
 import InertiaPlugin from "gsap/dist/InertiaPlugin";
 import MorphSVGPlugin from "gsap/MorphSVGPlugin";
-
+import Physics2DPlugin from "gsap/Physics2DPlugin";
 gsap.registerPlugin(
   useGSAP,
   ScrollTrigger,
@@ -20,6 +20,7 @@ gsap.registerPlugin(
   Draggable,
   InertiaPlugin,
   MorphSVGPlugin,
+  Physics2DPlugin,
 );
 
 createRoot(document.getElementById("root")!).render(
