@@ -4,23 +4,17 @@ export function HelloCanvasView() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    if (!canvasRef.current) return;
-
-    const ctx = canvasRef.current.getContext("2d");
-    if (!ctx) return;
-    canvasRef.current.width = canvasRef.current.clientWidth;
-    canvasRef.current.height = canvasRef.current.clientHeight;
+    const canvas = canvasRef.current;
+    const ctx = canvas?.getContext("2d");
+    if (!canvas || !ctx) return;
+    canvas.width = canvas.clientWidth;
+    canvas.height = canvas.clientHeight;
 
     ctx.fillStyle = "#ffff00";
-    ctx.fillRect(
-      canvasRef.current.width / 2 - 100,
-      canvasRef.current.height / 2 - 50,
-      200,
-      100,
-    );
+    ctx.fillRect(canvas.width / 2 - 100, canvas.height / 2 - 50, 200, 100);
     return () => {
-      if (!ctx || !canvasRef.current) return;
-      ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
+      if (!ctx || !canvas) return;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
     };
   });
   return (

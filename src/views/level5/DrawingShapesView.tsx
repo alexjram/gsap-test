@@ -1,5 +1,87 @@
 import { useEffect, useRef } from "react";
+function drawCircle(
+  ctx: CanvasRenderingContext2D,
+  canvas: HTMLCanvasElement,
+  isStroke: boolean,
+) {
+  ctx.beginPath();
+  ctx.arc(
+    Math.random() * canvas.width,
+    Math.random() * canvas.height,
+    Math.random() * 25,
+    0,
+    2 * Math.PI,
+  );
+  if (isStroke) {
+    ctx.stroke();
+  } else {
+    ctx.fill();
+  }
+}
+function drawRectangle(
+  canvas: HTMLCanvasElement,
+  ctx: CanvasRenderingContext2D,
+  isStroke: boolean,
+) {
+  if (isStroke) {
+    ctx.fillRect(
+      Math.random() * canvas.width,
+      Math.random() * canvas.height,
+      Math.random() * 50,
+      Math.random() * 50,
+    );
+  } else {
+    ctx.strokeRect(
+      Math.random() * canvas.width,
+      Math.random() * canvas.height,
+      Math.random() * 50,
+      Math.random() * 50,
+    );
+  }
+}
+function drawTriangle(
+  canvas: HTMLCanvasElement,
+  ctx: CanvasRenderingContext2D,
+  isStroke: boolean,
+) {
+  ctx.beginPath();
+  const origin = {
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+  };
+  const point2 = {
+    x: origin.x + (Math.random() * 50 - 25),
+    y: origin.y + (Math.random() * 50 - 25),
+  };
+  const point3 = {
+    x: point2.x + (Math.random() * 50 - 25),
+    y: point2.y + (Math.random() * 50 - 25),
+  };
+  ctx.moveTo(origin.x, origin.y);
+  ctx.lineTo(point2.x, point2.y);
+  ctx.lineTo(point3.x, point3.y);
+  ctx.closePath();
 
+  if (isStroke) {
+    ctx.stroke();
+  } else {
+    ctx.fill();
+  }
+}
+function drawLine(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) {
+  const originL = {
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+  };
+  const end = {
+    x: originL.x + (Math.random() * 50 - 25),
+    y: originL.y + (Math.random() * 50 - 25),
+  };
+  ctx.beginPath();
+  ctx.moveTo(originL.x, originL.y);
+  ctx.lineTo(end.x, end.y);
+  ctx.stroke();
+}
 function drawElements(canvas: HTMLCanvasElement) {
   const ctx = canvas.getContext("2d");
   if (!ctx) return;
@@ -13,65 +95,16 @@ function drawElements(canvas: HTMLCanvasElement) {
     const isStroke = Math.random() * 10 < 5;
     switch (i % 4) {
       case 0:
-        ctx.beginPath();
-        ctx.arc(
-          Math.random() * canvas.width,
-          Math.random() * canvas.height,
-          Math.random() * 25,
-          0,
-          2 * Math.PI,
-        );
-        isStroke ? ctx.stroke() : ctx.fill();
+        drawCircle(ctx, canvas, isStroke);
         break;
       case 1:
-        !isStroke
-          ? ctx.fillRect(
-              Math.random() * canvas.width,
-              Math.random() * canvas.height,
-              Math.random() * 50,
-              Math.random() * 50,
-            )
-          : ctx.strokeRect(
-              Math.random() * canvas.width,
-              Math.random() * canvas.height,
-              Math.random() * 50,
-              Math.random() * 50,
-            );
+        drawRectangle(canvas, ctx, isStroke);
         break;
       case 2:
-        ctx.beginPath();
-        const origin = {
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-        };
-        const point2 = {
-          x: origin.x + (Math.random() * 50 - 25),
-          y: origin.y + (Math.random() * 50 - 25),
-        };
-        const point3 = {
-          x: point2.x + (Math.random() * 50 - 25),
-          y: point2.y + (Math.random() * 50 - 25),
-        };
-        ctx.moveTo(origin.x, origin.y);
-        ctx.lineTo(point2.x, point2.y);
-        ctx.lineTo(point3.x, point3.y);
-        ctx.closePath();
-        isStroke ? ctx.stroke() : ctx.fill();
+        drawTriangle(canvas, ctx, isStroke);
         break;
       case 3:
-        const originL = {
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-        };
-        const end = {
-          x: originL.x + (Math.random() * 50 - 25),
-          y: originL.y + (Math.random() * 50 - 25),
-        };
-        ctx.beginPath();
-        ctx.strokeStyle = color;
-        ctx.moveTo(originL.x, originL.y);
-        ctx.lineTo(end.x, end.y);
-        ctx.stroke();
+        drawLine(canvas, ctx);
         break;
     }
   }

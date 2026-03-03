@@ -15,7 +15,7 @@ function animation(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     const newCircles: Circle[] = [];
     circles.forEach((c) => {
-      let updated = updateCircleInBounds(c, canvas.width, canvas.height, 5);
+      const updated = updateCircleInBounds(c, canvas.width, canvas.height, 5);
       newCircles.push(updated);
       drawCircle(c, ctx);
     });

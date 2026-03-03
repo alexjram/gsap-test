@@ -1,4 +1,5 @@
 import { getResizeCanvasListener } from "@/lib/utils";
+import { gsap } from "gsap";
 import { useEffect, useRef } from "react";
 
 interface Point {
@@ -27,8 +28,14 @@ function drawCircle(circle: Shape, ctx: CanvasRenderingContext2D) {
 }
 function drawSquare(square: Shape, ctx: CanvasRenderingContext2D) {
   const bl: Point = {
-    x: square.center.x - (square.size / 2) * Math.cos(square.angle),
-    y: square.center.y - (square.size / 2) * Math.sin(square.angle),
+    x:
+      square.center.x -
+      (square.size / 2) * Math.cos(square.angle) -
+      (square.size / 2) * Math.cos(square.angle + Math.PI / 2),
+    y:
+      square.center.y -
+      (square.size / 2) * Math.sin(square.angle) -
+      (square.size / 2) * Math.sin(square.angle + Math.PI / 2),
   };
   const br: Point = {
     x: bl.x + square.size * Math.cos(square.angle + Math.PI / 2),
@@ -81,12 +88,18 @@ function drawTriangle(triangle: Shape, ctx: CanvasRenderingContext2D) {
   ctx.lineTo(br.x, br.y);
   ctx.lineTo(t.x, t.y);
   ctx.lineTo(bl.x, bl.y);
-  ctx.strokeStyle = triangle.color;
-  ctx.stroke();
+  if (triangle.filled) {
+    ctx.fillStyle = triangle.color;
+    ctx.fill();
+  } else {
+    ctx.strokeStyle = triangle.color;
+    ctx.stroke();
+  }
 }
 function animate(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) {
-  const layers: Shape[][] = [];
+  const layers: { shapes: Shape[]; angle: number }[] = [];
 
+  let animationId: number;
   let layer = 0;
   const center = {
     x: canvas.width / 2,
@@ -105,31 +118,20 @@ function animate(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) {
         shapeType = "triangle";
         break;
     }
-    if (layer === 0) {
-      layers.push([
-        {
-          center: {
-            x: canvas.width / 2,
-            y: canvas.height / 2,
-          },
-          color: `hsl(${Math.random() * 360}, 100%, 50%)`,
-          type: shapeType,
-          angle: 0,
-          size: 40,
-          filled: false,
-        },
-      ]);
-      layer++;
-      continue;
-    }
+
     const l: Shape[] = [];
     const radius = layer * 45;
     const circunference = radius * 2 * Math.PI;
-    const itemWidth = 40 + (circunference % 40);
+    let maxItems = Math.floor(circunference / 40);
+    let spacing = (circunference - maxItems * 40) / maxItems;
 
+    if (layer === 0) {
+      maxItems = 1;
+      spacing = 40;
+    }
     let item = 0;
-    while (item * itemWidth < circunference) {
-      const angle = (itemWidth * item * 2 * Math.PI) / circunference;
+    while (item < maxItems) {
+      const angle = ((spacing + 40) * item * 2 * Math.PI) / circunference;
       l.push({
         center: {
           x: radius * Math.cos(angle) + center.x,
@@ -138,31 +140,77 @@ function animate(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) {
         color: `hsl(${Math.random() * 360}, 100%, 50%)`,
         size: 40,
         angle,
-        filled: Math.random() < 0.5,
+        filled: (layer & 1) === 1,
         type: shapeType,
       });
       item++;
     }
+    if (layer === 0) {
+      l[0].center = {
+        x: canvas.width / 2,
+        y: canvas.height / 2,
+      };
+      l[0].angle = 0;
+      console.log(l);
+    }
+    const la = {
+      angle: 0,
+      shapes: l,
+    };
 
-    layers.push(l);
+    if (layer & 1) {
+      gsap.to(la, {
+        angle: 2 * Math.PI,
+        duration: 4 + layer,
+        ease: "none",
+        repeat: -1,
+      });
+    } else {
+      gsap.from(la, {
+        angle: 2 * Math.PI,
+        duration: 4 + layer,
+        ease: "none",
+        repeat: -1,
+      });
+    }
 
+    layers.push(la);
     layer++;
   }
 
-  layers.forEach((l) => {
-    l.forEach((s) => {
-      switch (s.type) {
-        case "circle":
-          drawCircle(s, ctx);
-          break;
-        case "square":
-          drawSquare(s, ctx);
-          break;
-        case "triangle":
-          drawTriangle(s, ctx);
-      }
+  const loop = () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    layers.forEach((l, i) => {
+      const radius = i * 45;
+      l.shapes.forEach((s) => {
+        const newShape = { ...s };
+        newShape.angle = s.angle + l.angle;
+        if (layer > 0) {
+          newShape.center = {
+            x: radius * Math.cos(l.angle + s.angle) + center.x,
+            y: radius * Math.sin(l.angle + s.angle) + center.y,
+          };
+        }
+
+        switch (s.type) {
+          case "circle":
+            drawCircle(newShape, ctx);
+            break;
+          case "square":
+            drawSquare(newShape, ctx);
+            break;
+          case "triangle":
+            drawTriangle(newShape, ctx);
+        }
+      });
     });
-  });
+    animationId = requestAnimationFrame(loop);
+  };
+  animationId = requestAnimationFrame(loop);
+
+  return () => {
+    cancelAnimationFrame(animationId);
+  };
 }
 
 export function GenerativeArtView() {
@@ -178,10 +226,11 @@ export function GenerativeArtView() {
     window.addEventListener("resize", resizeListener);
     resizeListener();
 
-    animate(canvas, ctx);
+    const cancelAnimation = animate(canvas, ctx);
 
     return () => {
       window.removeEventListener("resize", resizeListener);
+      cancelAnimation();
     };
   });
   return (
